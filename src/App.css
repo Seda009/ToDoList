@@ -1,0 +1,10 @@
+.sidebar {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+}
+.bar1,
+.bar2 {
+  display: flex;
+  gap: 15px;
+}

@@ -1,0 +1,12 @@
+input:checked,
+.label {
+  text-decoration: line-through;
+}
+
+.toDoCompleted {
+  font-weight: 500;
+  text-decoration: line-through;
+}
+.toDoNotCompleted {
+  font-weight: 500;
+}
