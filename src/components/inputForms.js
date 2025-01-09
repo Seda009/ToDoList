@@ -4,7 +4,7 @@ import { ToDoContext } from "./todoProvider";
 function InputForms() {
   const [inputValue, setInputValue] = useState("");
 
-  const { toDo, setToDo } = useContext(ToDoContext);
+  const { toDo, setToDo, page, setPage } = useContext(ToDoContext);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -20,13 +20,18 @@ function InputForms() {
   }
   console.log(toDo);
   return (
-    <div>
+    <div
+      style={{
+        marginBottom: "40px",
+      }}
+    >
       <input
         value={inputValue}
         onChange={handleInputChange}
         placeholder="Search note..."
         style={{
           padding: "7px",
+
           border: "1px solid #b18ac1",
           width: "320px",
           marginLeft: "20px",
@@ -43,6 +48,20 @@ function InputForms() {
         }}
       >
         Add
+      </button>
+      <button
+        onClick={() => setPage(page + 1)}
+        style={{
+          marginLeft: "20px",
+
+          color: "white",
+          border: "none",
+          padding: "7px",
+          marginTop: "40px",
+          background: " rgb(177, 138, 193) ",
+        }}
+      >
+        Load more
       </button>
     </div>
   );

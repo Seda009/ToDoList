@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useState, useEffect } from "react";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ToDoCont.css";
@@ -6,9 +6,9 @@ import "./ToDoCont.css";
 import { ToDoContext } from "./todoProvider";
 
 function ToDoCont() {
-  const { toDo, setToDo } = useContext(ToDoContext);
-
+  const { toDo, setToDo, page, setPage } = useContext(ToDoContext);
   const [checked, setChecked] = useState(false);
+
   function handleChange(e, item) {
     let checked = item.checked;
     item.checked = !checked;
@@ -19,25 +19,35 @@ function ToDoCont() {
     const updatedToDo = toDo.filter((item) => item.id !== item1.id);
     setToDo(updatedToDo);
   }
+
   function editFunction(item) {
     const editInput = prompt("Edit your text");
     const editedToDo = toDo.map((todo) =>
-      todo.id === item.id ? { ...todo, toDoName: editInput } : todo
+      todo.id === item.id ? { ...todo, todo: editInput } : todo
     );
 
     setToDo(editedToDo);
-    // console.log(toDo);
-    // setToDo(editedToDo);
-    // setToDo((prev) => [...prev, editedToDo]);
+    console.log(toDo);
+    setToDo(editedToDo);
+    setToDo((prev) => [...prev, editedToDo]);
   }
-
+  // const slicedData = toDo?.slice(0, 3);
+  function loadingFunction() {}
   return (
-    <div>
-      {toDo.map((item) => {
+    <div
+      style={{
+        height: "200px",
+        width: "534px",
+        marginLeft: "21px",
+        backgroundColor: "white",
+        boxShadow: "10px 10px #ededed59",
+        overflowY: "scroll",
+      }}
+    >
+      {toDo?.map((item) => {
         return (
           <div
             style={{
-              width: "200px",
               display: "flex",
               alignItems: "center",
               gap: "10px",
@@ -53,9 +63,10 @@ function ToDoCont() {
             />
             <label
               htmlFor={item.id}
+              style={{ width: "400px" }}
               className={item.checked ? "toDoCompleted" : "toDoNotCompleted"}
             >
-              {item.toDoName}
+              {item.todo}
             </label>
 
             <p>

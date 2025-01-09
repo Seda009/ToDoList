@@ -8,3 +8,8 @@
   display: flex;
   gap: 15px;
 }
+body {
+  display: flex;
+  justify-content: center;
+  background-color: #faf5f5;
+}
